@@ -1,0 +1,122 @@
+//Clase main
+package Examen1;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Ejecucion ejecucion = new Ejecucion();
+        ejecucion.iniciarPrograma();
+    }
+}
+//clase ejecucion
+package Examen1;
+
+public class Ejecucion {
+
+    public void iniciarPrograma() {
+        Palabras frase1 = new Palabras("hasta luego cocodrilo");
+        Palabras oracion2 = new Palabras("anita lava la tina");
+
+        frase1.convertirPrimeraMayuscula();
+        frase1.invertirCadena();
+        frase1.convertirVocalesMayuscula();
+        frase1.saberPalindromo();
+
+        oracion2.convertirPrimeraMayuscula();
+        oracion2.invertirCadena();
+        oracion2.convertirVocalesMayuscula();
+        oracion2.saberPalindromo();
+
+        Extra fb = new Extra();
+        fb.preguntarFizzBuzz();
+    }
+}
+
+//Clase palabras
+package Examen1;
+public class Palabras {
+    String cadena;
+
+   public Palabras(String cadena) {
+       this.cadena = cadena;
+   }
+   public void convertirPrimeraMayuscula() {
+       if(cadena != null) 
+       {
+       	char primerCaracter = Character.toUpperCase(cadena.charAt(0));
+           String restoCadena = cadena.substring(1);
+           String resultado = primerCaracter + restoCadena;
+           System.out.println(resultado);
+       }
+   }
+
+   public void invertirCadena() {
+   	 StringBuilder cadenaInvertida = new StringBuilder(cadena);
+        cadenaInvertida.reverse();
+        System.out.println(cadenaInvertida.toString());
+   }
+
+   public void convertirVocalesMayuscula(){
+   	if (cadena != null ) {
+           StringBuilder cadenaModificada = new StringBuilder();
+           for (char caracter : cadena.toCharArray()) {
+               if ("aeiouAEIOU".contains(String.valueOf(caracter))) {
+                   cadenaModificada.append(Character.toUpperCase(caracter));
+               } else {
+                   cadenaModificada.append(caracter);
+               }
+           }
+           System.out.println(cadenaModificada.toString());
+       }
+   }
+
+	public void saberPalindromo() {
+		if (cadena != null) {
+	        String cadenaSinEspacios = cadena.replaceAll("\\s", "").toLowerCase();
+	        boolean esPalindromo = cadenaSinEspacios.equals(new StringBuilder(cadenaSinEspacios).reverse().toString());
+	        if (esPalindromo) {
+	            System.out.println("La cadena es un palindromo.");
+	        } else {
+	            System.out.println("La cadena no es un palindromo.");
+	        }
+	    }
+   }
+}
+//Clase extra
+package Examen1;
+import java.util.Scanner;
+	public class Extra {
+		
+	    public void calcularFizzBuzz() {
+	        for (int i  = 1; i <= 100; i++) {
+	            if (i%3 == 0 && i%5 == 0) {
+	                System.out.println("FizzBuzz");
+	            } else if (i % 3 == 0) {
+	                System.out.println("Fizz");
+	            } else if (i % 5 == 0) {
+	                System.out.println("Buzz");
+	            } else {
+	                System.out.println(i);
+	            }
+	        }
+	    }
+
+	    public void preguntarFizzBuzz() {
+	   
+	        System.out.println("Deseas ejecutar FizzBuzz. Si o no: ");
+	        System.out.println("1= Si ");
+	        System.out.println("2= no ");
+	        
+	        Scanner scan1 = new Scanner(System.in);
+	        String respuesta = scan1.nextLine();
+            double opFizz = Integer.parseInt(respuesta);
+	        if (opFizz == 1) {
+	            calcularFizzBuzz();
+	        } else {
+	            System.out.println("Finalizado, gracias.");
+	        }
+
+	        scan1.close();
+	}
+}
+
